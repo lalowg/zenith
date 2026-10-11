@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ZENITH — Your Mind, in Focus</title>
+<meta name="description" content="ZENITH is a quiet breathing sanctuary. Breathe with an evening landscape: the sun rises to the zenith as you breathe in and settles into the lake as you breathe out. Guided sessions, your own pace, no streaks.">
+<meta name="theme-color" content="#2B2440">
+<link rel="canonical" href="https://zenith-blue-beta.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZENITH">
+<meta property="og:title" content="ZENITH — Your Mind, in Focus">
+<meta property="og:description" content="A breathing sanctuary. The sun climbs to the zenith on your in-breath and settles into the water on your out-breath.">
+<meta property="og:url" content="https://zenith-blue-beta.vercel.app/">
+<meta property="og:image" content="https://zenith-blue-beta.vercel.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ZENITH — Your Mind, in Focus">
+<meta name="twitter:description" content="A breathing sanctuary with guided sessions and an evening landscape that follows your breath.">
+<meta name="twitter:image" content="https://zenith-blue-beta.vercel.app/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gilda+Display&amp;family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;display=swap">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.zenithReady)document.documentElement.classList.remove('js');},3000);</script>
+<script type="module" src="main.js"></script>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+
+<svg class="defs" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <linearGradient id="rhythm-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6C6A8" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#F6C6A8" stop-opacity="0"/>
+    </linearGradient>
+    <symbol id="mark" viewBox="0 0 176 48">
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 30 A16 16 0 0 1 38 30" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M2 30 H42" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M22 28 V19" stroke="currentColor" stroke-width="1" stroke-dasharray="1.2 2.6" opacity=".7"/>
+        <path d="M11 35 H33 M15.5 39.5 H28.5 M19.5 44 H24.5" stroke="var(--mark-accent, #F6C6A8)" stroke-width="1.6"/>
+        <g stroke="currentColor" stroke-width="1.6">
+          <path d="M56 16 H67 L56 32 H67"/>
+          <path d="M88 16 H79 V32 H88 M79 24 H86"/>
+          <path d="M100 32 V16 L112 32 V16"/>
+          <path d="M124 16 V32"/>
+          <path d="M136 16 H148 M142 16 V32"/>
+          <path d="M160 16 V32 M171 16 V32 M160 24 H171"/>
+        </g>
+      </g>
+      <circle cx="22" cy="14" r="3.4" fill="var(--mark-accent, #F6C6A8)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <a class="brand" href="#top" aria-label="ZENITH, back to the top">
+    <svg class="brand__logo" viewBox="0 0 176 48" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+  </a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="menu-btn__sun" aria-hidden="true"></span><span class="menu-btn__label">Index</span></button>
+  <nav id="site-nav" class="overlay-nav" aria-label="Sections">
+    <ol>
+      <li><a href="#breathe"><span class="overlay-nav__no">00</span>Breathe</a></li>
+      <li><a href="#sessions"><span class="overlay-nav__no">01</span>Sessions</a></li>
+      <li><a href="#arc"><span class="overlay-nav__no">02</span>The arc of a breath</a></li>
+      <li><a href="#rhythms"><span class="overlay-nav__no">03</span>Rhythms</a></li>
+      <li><a href="#practice"><span class="overlay-nav__no">04</span>Before you begin</a></li>
+      <li><a href="#sanctuary"><span class="overlay-nav__no">05</span>The sanctuary</a></li>
+      <li><a href="#letter"><span class="overlay-nav__no">06</span>First light list</a></li>
+    </ol>
+    <p class="overlay-nav__note">ZENITH is a fictional concept brand. Nothing here is a medical service.</p>
+  </nav>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- 00 Breathe -->
+  <section id="breathe" class="hero" aria-labelledby="hero-title" data-state="idle" data-mode="paced">
+    <canvas class="hero__canvas" aria-hidden="true"></canvas>
+    <div class="hero__fallback" aria-hidden="true"><span class="fb-sun"></span></div>
+
+    <div class="hero__title">
+      <p class="eyebrow">A sanctuary for the breath</p>
+      <h1 id="hero-title">Your mind, <em>in focus.</em></h1>
+      <p class="hero__lede">The sun climbs toward the zenith while you breathe in and settles into the water while you breathe out. Follow it for a few minutes. Nothing else is asked of you.</p>
+    </div>
+
+    <div class="hero__sky" id="sky-area"></div>
+
+    <div class="hero__guide" id="guide">
+      <p class="prompt" id="prompt" aria-live="polite"><span>Take a moment</span></p>
+      <p class="count" id="count" aria-hidden="true"></p>
+      <p class="hint" id="hint">Choose a session, then press Begin. The landscape will keep the pace.</p>
+      <p class="cue" id="cue"></p>
+    </div>
+
+    <dl class="hero__status" aria-label="Session status">
+      <div><dt>Session</dt><dd id="st-session">Arrive</dd></div>
+      <div><dt>Remaining</dt><dd id="remain" role="timer">3:00</dd></div>
+      <div><dt>Breaths</dt><dd id="cycles">—</dd></div>
+      <div><dt>Sky</dt><dd id="skyname">Dusk</dd></div>
+    </dl>
+
+    <div class="dock" role="group" aria-label="Breathing controls">
+      <div class="dock__left">
+      <button class="dock__session" id="session-btn" type="button" aria-expanded="false" aria-controls="dock-panel">
+        <span class="dock__k">Session</span>
+        <span class="dock__v" id="session-label">Arrive · 3 min</span>
+        <svg class="dock__chev" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 6.5 6 1.5l5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+      </button>
+
+      <div class="dock__pace">
+        <label for="pace" class="dock__k">Pace</label>
+        <div class="pace">
+          <span class="pace__end" aria-hidden="true">quicker</span>
+          <input type="range" id="pace" min="0.75" max="1.5" step="0.05" value="1">
+          <span class="pace__end" aria-hidden="true">slower</span>
+        </div>
+        <output id="pace-out" for="pace" class="dock__v">One breath · 10 s</output>
+      </div>
+      </div>
+
+      <div class="dock__main">
+        <button id="start" class="btn-begin" type="button"><span class="btn-begin__icon" aria-hidden="true"></span><span class="btn-begin__label">Begin</span></button>
+        <button id="reset" class="btn-quiet" type="button" disabled>Reset</button>
+      </div>
+
+      <button id="free-btn" class="dock__free" type="button" aria-pressed="false">
+        <span class="dock__k">Mode</span>
+        <span class="dock__v"><span class="toggle" aria-hidden="true"></span>Follow my breath</span>
+      </button>
+
+      <div class="dock__panel" id="dock-panel" hidden>
+        <fieldset class="panel__sessions">
+          <legend>Guided sessions</legend>
+          <label class="opt"><input type="radio" name="session" value="arrive"><span class="opt__name">Arrive</span><span class="opt__meta">3 min · in 4, out 6</span></label>
+          <label class="opt"><input type="radio" name="session" value="clear"><span class="opt__name">Clear</span><span class="opt__meta">2 min · in 4, hold 2, out 4</span></label>
+          <label class="opt"><input type="radio" name="session" value="steady"><span class="opt__name">Steady</span><span class="opt__meta">5 min · square 4, 4, 4, 4</span></label>
+          <label class="opt"><input type="radio" name="session" value="unwind"><span class="opt__name">Unwind</span><span class="opt__meta">8 min · in 4, hold 7, out 8</span></label>
+          <label class="opt"><input type="radio" name="session" value="own"><span class="opt__name">Your rhythm</span><span class="opt__meta" id="own-meta">set below</span></label>
+        </fieldset>
+        <div class="panel__own" id="own-panel">
+          <fieldset class="panel__sliders">
+            <legend>Your rhythm, in seconds</legend>
+            <div class="slider"><label for="r-0">In</label><input type="range" id="r-0" data-idx="0" min="2" max="10" step="1"><output id="o-0" for="r-0"></output></div>
+            <div class="slider"><label for="r-1">Hold</label><input type="range" id="r-1" data-idx="1" min="0" max="10" step="1"><output id="o-1" for="r-1"></output></div>
+            <div class="slider"><label for="r-2">Out</label><input type="range" id="r-2" data-idx="2" min="2" max="12" step="1"><output id="o-2" for="r-2"></output></div>
+            <div class="slider"><label for="r-3">Rest</label><input type="range" id="r-3" data-idx="3" min="0" max="10" step="1"><output id="o-3" for="r-3"></output></div>
+          </fieldset>
+          <fieldset class="panel__len">
+            <legend>Length</legend>
+            <label class="chip"><input type="radio" name="length" value="1"><span>1 min</span></label>
+            <label class="chip"><input type="radio" name="length" value="3"><span>3 min</span></label>
+            <label class="chip"><input type="radio" name="length" value="5"><span>5 min</span></label>
+            <label class="chip"><input type="radio" name="length" value="10"><span>10 min</span></label>
+          </fieldset>
+          <p class="panel__note">Changes made during a session begin with the next breath.</p>
+        </div>
+        <button class="panel__close" id="panel-close" type="button">Done</button>
+      </div>
+    </div>
+
+    <p class="hero__free-hint" id="free-hint">Press and hold <strong>Breathe in</strong>, or hold the space bar while it is focused. Let go to breathe out. The sun follows you.</p>
+  </section>
+
+  <a class="pill" id="pill" href="#breathe" hidden>
+    <span class="pill__sun" aria-hidden="true"></span>
+    <span class="pill__text" id="pill-text">Breathe in</span>
+    <span class="pill__count" id="pill-count"></span>
+    <span class="visually-hidden">— return to the breathing guide</span>
+  </a>
+
+  <!-- 01 Sessions -->
+  <section id="sessions" class="sessions" aria-labelledby="sessions-title">
+    <header class="sec-head">
+      <p class="eyebrow"><span class="eyebrow__no">01</span>Sessions</p>
+      <h2 id="sessions-title" data-rise>Four guided sessions, one for each kind of evening.</h2>
+      <p class="sec-head__lede" data-rise>Every session has a fixed rhythm and a handful of quiet cues that appear beneath the sun as you breathe. Pick the one that matches the day you have had.</p>
+    </header>
+
+    <ol class="slist">
+      <li class="srow" data-rise>
+        <span class="srow__no" aria-hidden="true">I</span>
+        <div class="srow__main">
+          <h3>Arrive</h3>
+          <p>For the first minutes after a loud day. The out-breath is longer than the in-breath, and there is nothing else to do.</p>
+        </div>
+        <dl class="srow__meta">
+          <div><dt>Length</dt><dd>3 min</dd></div>
+          <div><dt>Rhythm</dt><dd>In 4 · Out 6</dd></div>
+        </dl>
+        <svg class="rhythm" data-rhythm="arrive" viewBox="0 0 600 140" role="img" aria-label="Rhythm of Arrive: in for 4 seconds, out for 6 seconds">
+          <path class="rhythm__area" d=""/><path class="rhythm__line" d=""/><line class="rhythm__base" x1="20" y1="120" x2="580" y2="120"/><circle class="rhythm__halo" r="10" cx="20" cy="120"/><circle class="rhythm__dot" r="4" cx="20" cy="120"/>
+        </svg>
+        <button class="btn-line" type="button" data-use="arrive">Begin Arrive</button>
+      </li>
+      <li class="srow" data-rise>
+        <span class="srow__no" aria-hidden="true">II</span>
+        <div class="srow__main">
+          <h3>Clear</h3>
+          <p>Two minutes between one task and the next. A short pause at the top of each breath, like looking up from the page.</p>
+        </div>
+        <dl class="srow__meta">
+          <div><dt>Length</dt><dd>2 min</dd></div>
+          <div><dt>Rhythm</dt><dd>In 4 · Hold 2 · Out 4</dd></div>
+        </dl>
+        <svg class="rhythm" data-rhythm="clear" viewBox="0 0 600 140" role="img" aria-label="Rhythm of Clear: in for 4 seconds, hold for 2, out for 4">
+          <path class="rhythm__area" d=""/><path class="rhythm__line" d=""/><line class="rhythm__base" x1="20" y1="120" x2="580" y2="120"/><circle class="rhythm__halo" r="10" cx="20" cy="120"/><circle class="rhythm__dot" r="4" cx="20" cy="120"/>
+        </svg>
+        <button class="btn-line" type="button" data-use="clear">Begin Clear</button>
+      </li>
+      <li class="srow" data-rise>
+        <span class="srow__no" aria-hidden="true">III</span>
+        <div class="srow__main">
+          <h3>Steady</h3>
+          <p>An even square of breath for when thoughts crowd one another. Four sides, four counts each, drawn slowly.</p>
+        </div>
+        <dl class="srow__meta">
+          <div><dt>Length</dt><dd>5 min</dd></div>
+          <div><dt>Rhythm</dt><dd>4 · 4 · 4 · 4</dd></div>
+        </dl>
+        <svg class="rhythm" data-rhythm="steady" viewBox="0 0 600 140" role="img" aria-label="Rhythm of Steady: in, hold, out and rest for 4 seconds each">
+          <path class="rhythm__area" d=""/><path class="rhythm__line" d=""/><line class="rhythm__base" x1="20" y1="120" x2="580" y2="120"/><circle class="rhythm__halo" r="10" cx="20" cy="120"/><circle class="rhythm__dot" r="4" cx="20" cy="120"/>
+        </svg>
+        <button class="btn-line" type="button" data-use="steady">Begin Steady</button>
+      </li>
+      <li class="srow" data-rise>
+        <span class="srow__no" aria-hidden="true">IV</span>
+        <div class="srow__main">
+          <h3>Unwind</h3>
+          <p>For the edge of sleep. A long hold and a longer release. If the hold feels like effort, shorten it in Your rhythm.</p>
+        </div>
+        <dl class="srow__meta">
+          <div><dt>Length</dt><dd>8 min</dd></div>
+          <div><dt>Rhythm</dt><dd>In 4 · Hold 7 · Out 8</dd></div>
+        </dl>
+        <svg class="rhythm" data-rhythm="unwind" viewBox="0 0 600 140" role="img" aria-label="Rhythm of Unwind: in for 4 seconds, hold for 7, out for 8">
+          <path class="rhythm__area" d=""/><path class="rhythm__line" d=""/><line class="rhythm__base" x1="20" y1="120" x2="580" y2="120"/><circle class="rhythm__halo" r="10" cx="20" cy="120"/><circle class="rhythm__dot" r="4" cx="20" cy="120"/>
+        </svg>
+        <button class="btn-line" type="button" data-use="unwind">Begin Unwind</button>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 02 The arc of a breath -->
+  <section id="arc" class="arc" aria-labelledby="arc-title" data-step="rise">
+    <div class="arc__sticky">
+      <figure class="arc__plate" aria-hidden="true">
+        <svg viewBox="0 0 600 640" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <defs>
+            <linearGradient id="arc-sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" class="arc-stop-top"/>
+              <stop offset=".6" class="arc-stop-mid"/>
+              <stop offset="1" class="arc-stop-low"/>
+            </linearGradient>
+            <linearGradient id="arc-water" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3A2F57"/>
+              <stop offset="1" stop-color="#141222"/>
+            </linearGradient>
+            <radialGradient id="arc-glow">
+              <stop offset="0" stop-color="#FFF4EC" stop-opacity=".9"/>
+              <stop offset=".18" stop-color="#F6C6A8" stop-opacity=".45"/>
+              <stop offset="1" stop-color="#F6C6A8" stop-opacity="0"/>
+            </radialGradient>
+            <clipPath id="arc-skyclip"><rect width="600" height="400"/></clipPath>
+          </defs>
+          <rect width="600" height="400" fill="url(#arc-sky)"/>
+          <g class="arc-stars" fill="#E9E4F0">
+            <circle cx="80" cy="60" r="1.2"/><circle cx="140" cy="130" r=".9"/><circle cx="220" cy="40" r="1.4"/><circle cx="330" cy="90" r=".8"/><circle cx="410" cy="34" r="1.1"/><circle cx="500" cy="110" r="1.3"/><circle cx="545" cy="52" r=".8"/><circle cx="270" cy="150" r=".9"/><circle cx="60" cy="190" r=".8"/><circle cx="470" cy="180" r=".9"/>
+          </g>
+          <g clip-path="url(#arc-skyclip)">
+            <g class="arc-sun">
+              <circle cx="300" cy="400" r="170" fill="url(#arc-glow)"/>
+              <circle cx="300" cy="400" r="22" fill="#FFF4EC"/>
+            </g>
+          </g>
+          <path d="M60 400 A240 240 0 0 1 540 400" fill="none" stroke="#E9E4F0" stroke-opacity=".28" stroke-width="1"/>
+          <path class="arc-trace" d="M60 400 A240 240 0 0 1 540 400" fill="none" stroke="#FFF4EC" stroke-width="2" pathLength="100"/>
+          <path d="M0 400 L0 330 C40 318 70 296 110 300 C150 304 170 326 210 350 C236 366 256 388 272 400 Z" fill="#5C4A72"/>
+          <path d="M600 400 L600 318 C560 300 528 286 494 296 C452 308 430 338 392 360 C366 376 344 392 328 400 Z" fill="#5C4A72"/>
+          <path d="M0 400 L0 360 C46 352 80 340 120 348 C160 356 184 380 214 400 Z" fill="#2E2645"/>
+          <path d="M600 400 L600 352 C556 342 520 340 486 352 C452 364 424 384 404 400 Z" fill="#2E2645"/>
+          <rect y="400" width="600" height="240" fill="url(#arc-water)"/>
+          <g class="arc-reflect" stroke="#F6C6A8" stroke-linecap="round">
+            <path d="M262 414 H338" stroke-width="2.4" opacity=".7"/>
+            <path d="M270 432 H330" stroke-width="2" opacity=".55"/>
+            <path d="M254 452 H346" stroke-width="1.6" opacity=".4"/>
+            <path d="M276 476 H324" stroke-width="1.4" opacity=".32"/>
+            <path d="M246 504 H354" stroke-width="1.2" opacity=".22"/>
+            <path d="M282 536 H318" stroke-width="1" opacity=".16"/>
+          </g>
+          <g class="arc-ripples" fill="none" stroke="#E9E4F0">
+            <ellipse cx="300" cy="430" rx="80" ry="9" stroke-opacity=".3"/>
+            <ellipse cx="300" cy="430" rx="150" ry="16" stroke-opacity=".18"/>
+            <ellipse cx="300" cy="430" rx="230" ry="24" stroke-opacity=".1"/>
+          </g>
+          <rect y="399.5" width="600" height="1" fill="#E9E4F0" fill-opacity=".25"/>
+        </svg>
+        <figcaption class="arc__name"><span class="arc__phase" id="arc-phase">In-breath</span><span id="arc-name">The rise</span></figcaption>
+      </figure>
+    </div>
+    <div class="arc__text">
+      <header class="sec-head">
+        <p class="eyebrow"><span class="eyebrow__no">02</span>The arc of a breath</p>
+        <h2 id="arc-title" data-rise>Every breath is a small day.</h2>
+        <p class="sec-head__lede" data-rise>The landscape is not decoration. Each of its parts answers one movement of the breath, so you can stop counting and simply watch.</p>
+      </header>
+      <article class="passage" data-step="rise">
+        <p class="passage__k">In-breath</p>
+        <h3>The rise</h3>
+        <p>The sun lifts out of the lake and climbs the meridian. The sky warms toward peach, and a dot travels the first part of the arc. Breathe in through the nose, unhurried, as if the light were pulling you up with it.</p>
+      </article>
+      <article class="passage" data-step="zenith">
+        <p class="passage__k">Hold</p>
+        <h3>The zenith</h3>
+        <p>At the top of the breath the sun rests at its highest point. Haze gathers on the horizon and the light grows a little brighter. Keep the shoulders soft. A hold is a pause, never a strain.</p>
+      </article>
+      <article class="passage" data-step="descent">
+        <p class="passage__k">Out-breath</p>
+        <h3>The descent</h3>
+        <p>The sun returns to the water and the sky cools toward lilac. A breeze moves across the lake and the reflection loosens into ripples. Let the breath leave slowly, a little longer than it came in.</p>
+      </article>
+      <article class="passage" data-step="still">
+        <p class="passage__k">Rest</p>
+        <h3>The stillness</h3>
+        <p>With the lungs empty, the water turns to glass. When a breath is complete, a star appears above the hills. By the end of a session they form a constellation, with the last star at the zenith.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 03 Rhythms -->
+  <section id="rhythms" class="rhythms" aria-labelledby="rhythms-title">
+    <header class="sec-head sec-head--row">
+      <div>
+        <p class="eyebrow"><span class="eyebrow__no">03</span>Rhythms</p>
+        <h2 id="rhythms-title" data-rise>A small library of shapes for the breath.</h2>
+      </div>
+      <div class="track-nav">
+        <button class="track-btn" type="button" data-track="-1" aria-controls="rhythm-track"><span aria-hidden="true">←</span><span class="visually-hidden">Previous rhythms</span></button>
+        <button class="track-btn" type="button" data-track="1" aria-controls="rhythm-track"><span aria-hidden="true">→</span><span class="visually-hidden">Next rhythms</span></button>
+      </div>
+    </header>
+    <p class="rhythms__note">Choosing a rhythm loads it into <em>Your rhythm</em> above, where you can still change every count.</p>
+    <div class="track" id="rhythm-track" tabindex="0" role="region" aria-label="Rhythm library, scrolls horizontally">
+      <article class="plate">
+        <p class="plate__len"><span>10</span>s</p>
+        <h3>Even</h3>
+        <p class="plate__shape">In 5 · Out 5</p>
+        <svg class="rhythm rhythm--plate" data-rhythm="even" viewBox="0 0 600 140" role="img" aria-label="Even rhythm: in for 5 seconds, out for 5">
+          <path class="rhythm__area" d=""/><path class="rhythm__line" d=""/><line class="rhythm__base" x1="20" y1="120" x2="580" y2="120"/><circle class="rhythm__halo" r="10" cx="20" cy="120"/><circle class="rhythm__dot" r="4" cx="20" cy="120"/>
+        </svg>
+        <p>The simplest shape: as long in as out, about six breaths a minute. A good place to begin if you are new to this.</p>
+        <button class="btn-line" type="button" data-rhythm-use="even">Breathe Even</button>
+      </article>
+      <article class="plate">
+        <p class="plate__len"><span>10</span>s</p>
+        <h3>Long out-breath</h3>
+        <p class="plate__shape">In 4 · Out 6</p>
+        <svg class="rhythm rhythm--plate" data-rhythm="long" viewBox="0 0 600 140" role="img" aria-label="Long out-breath rhythm: in for 4 seconds, out for 6">
+          <path class="rhythm__area" d=""/><path class="rhythm__line" d=""/><line class="rhythm__base" x1="20" y1="120" x2="580" y2="120"/><circle class="rhythm__halo" r="10" cx="20" cy="120"/><circle class="rhythm__dot" r="4" cx="20" cy="120"/>
+        </svg>
+        <p>The out-breath is given a little more room than the in-breath. Many people find this the most settling shape of all.</p>
+        <button class="btn-line" type="button" data-rhythm-use="long">Breathe Long out-breath</button>
+      </article>
+      <article class="plate">
+        <p class="plate__len"><span>12</span>s</p>
+        <h3>Triangle</h3>
+        <p class="plate__shape">In 4 · Hold 4 · Out 4</p>
+        <svg class="rhythm rhythm--plate" data-rhythm="triangle" viewBox="0 0 600 140" role="img" aria-label="Triangle rhythm: in, hold and out for 4 seconds each">
+          <path class="rhythm__area" d=""/><path class="rhythm__line" d=""/><line class="rhythm__base" x1="20" y1="120" x2="580" y2="120"/><circle class="rhythm__halo" r="10" cx="20" cy="120"/><circle class="rhythm__dot" r="4" cx="20" cy="120"/>
+        </svg>
+        <p>Three equal sides with a pause at the top only. Steady, but with no empty hold at the bottom.</p>
+        <button class="btn-line" type="button" data-rhythm-use="triangle">Breathe Triangle</button>
+      </article>
+      <article class="plate">
+        <p class="plate__len"><span>16</span>s</p>
+        <h3>Square</h3>
+        <p class="plate__shape">In 4 · Hold 4 · Out 4 · Rest 4</p>
+        <svg class="rhythm rhythm--plate" data-rhythm="square" viewBox="0 0 600 140" role="img" aria-label="Square rhythm: in, hold, out and rest for 4 seconds each">
+          <path class="rhythm__area" d=""/><path class="rhythm__line" d=""/><line class="rhythm__base" x1="20" y1="120" x2="580" y2="120"/><circle class="rhythm__halo" r="10" cx="20" cy="120"/><circle class="rhythm__dot" r="4" cx="20" cy="120"/>
+        </svg>
+        <p>Four equal sides. Counting them gives a busy mind a small, orderly job to do.</p>
+        <button class="btn-line" type="button" data-rhythm-use="square">Breathe Square</button>
+      </article>
+      <article class="plate">
+        <p class="plate__len"><span>19</span>s</p>
+        <h3>Four, seven, eight</h3>
+        <p class="plate__shape">In 4 · Hold 7 · Out 8</p>
+        <svg class="rhythm rhythm--plate" data-rhythm="478" viewBox="0 0 600 140" role="img" aria-label="Four seven eight rhythm: in for 4 seconds, hold for 7, out for 8">
+          <path class="rhythm__area" d=""/><path class="rhythm__line" d=""/><line class="rhythm__base" x1="20" y1="120" x2="580" y2="120"/><circle class="rhythm__halo" r="10" cx="20" cy="120"/><circle class="rhythm__dot" r="4" cx="20" cy="120"/>
+        </svg>
+        <p>A long hold and a long release, often practised at night. If the hold is uncomfortable, use the pace control to make it quicker.</p>
+        <button class="btn-line" type="button" data-rhythm-use="478">Breathe Four, seven, eight</button>
+      </article>
+      <article class="plate plate--own">
+        <p class="plate__len"><span id="own-len">14</span>s</p>
+        <h3>Your rhythm</h3>
+        <p class="plate__shape" id="own-shape">In 4 · Hold 2 · Out 6 · Rest 2</p>
+        <svg class="rhythm rhythm--plate" data-rhythm="own" viewBox="0 0 600 140" role="img" aria-label="Your rhythm as currently set">
+          <path class="rhythm__area" d=""/><path class="rhythm__line" d=""/><line class="rhythm__base" x1="20" y1="120" x2="580" y2="120"/><circle class="rhythm__halo" r="10" cx="20" cy="120"/><circle class="rhythm__dot" r="4" cx="20" cy="120"/>
+        </svg>
+        <p>Whatever you set in the dock lives here. The line redraws as you move the sliders, and it is remembered on this device.</p>
+        <button class="btn-line" type="button" data-use="own">Breathe Your rhythm</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- 04 Before you begin -->
+  <section id="practice" class="practice" aria-labelledby="practice-title">
+    <div class="practice__statement">
+      <p class="eyebrow"><span class="eyebrow__no">04</span>Before you begin</p>
+      <h2 id="practice-title" data-rise>Sit as if you were the horizon: level, unhurried, wide.</h2>
+    </div>
+    <ol class="steps">
+      <li class="step" data-rise>
+        <svg class="step__glyph" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><path d="M4 32 H60" /><circle cx="32" cy="34" r="6"/></svg>
+        <h3>Settle</h3>
+        <p>Sit or lie where you will not be disturbed for a few minutes. Let the floor or the chair take your weight.</p>
+      </li>
+      <li class="step" data-rise>
+        <svg class="step__glyph" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><path d="M4 32 H60" /><circle cx="32" cy="20" r="6"/></svg>
+        <h3>Soften</h3>
+        <p>Unclench the jaw. Let the shoulders fall away from the ears. Rest the tongue behind the top teeth.</p>
+      </li>
+      <li class="step" data-rise>
+        <svg class="step__glyph" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><path d="M4 32 H60" /><path d="M12 32 A20 20 0 0 1 52 32"/><circle cx="32" cy="12" r="5"/></svg>
+        <h3>Follow</h3>
+        <p>Watch the sun rather than the numbers. If you lose the count, wait for the next sunrise and join it there.</p>
+      </li>
+      <li class="step" data-rise>
+        <svg class="step__glyph" viewBox="0 0 64 40" aria-hidden="true" focusable="false"><path d="M4 32 H60" /><path d="M20 36 H44 M25 39 H39"/><circle cx="32" cy="32" r="3"/></svg>
+        <h3>Return</h3>
+        <p>When the session ends, stay a moment under the stars. Then let the breath find its own rhythm again.</p>
+      </li>
+    </ol>
+    <aside class="care" aria-labelledby="care-title">
+      <h3 id="care-title">A note on care</h3>
+      <p>ZENITH is a place to practise slow breathing. It is not a treatment and it does not diagnose or cure anything. If you feel light-headed, tingly or short of air, stop and breathe naturally. If you are pregnant or live with a heart or breathing condition, skip the holds and talk to a qualified professional before trying breath-hold rhythms.</p>
+    </aside>
+  </section>
+
+  <!-- 05 The sanctuary -->
+  <section id="sanctuary" class="sanctuary" aria-labelledby="sanctuary-title">
+    <div class="sanctuary__inner">
+      <p class="eyebrow"><span class="eyebrow__no">05</span>The sanctuary</p>
+      <h2 id="sanctuary-title" class="sanctuary__statement" data-rise>The zenith is the point directly above you. Wherever you stand, <em>it is yours.</em></h2>
+      <div class="sanctuary__cols">
+        <ul class="vows" aria-label="Three promises">
+          <li data-rise><span class="vows__k">No streaks to keep.</span> Missing a day is not a failure. The landscape is the same tomorrow.</li>
+          <li data-rise><span class="vows__k">No scores to beat.</span> Breaths are counted only so you can see where you are in a session.</li>
+          <li data-rise><span class="vows__k">No feed to return to.</span> When the session ends, there is nothing more to scroll.</li>
+        </ul>
+        <dl class="is-isnt" data-rise>
+          <div>
+            <dt>ZENITH is</dt>
+            <dd>A guide for slow, paced breathing</dd>
+            <dd>A few minutes of evening, whenever you need one</dd>
+            <dd>Private: your settings stay on this device</dd>
+          </div>
+          <div>
+            <dt>ZENITH is not</dt>
+            <dd>Therapy, a medical device or a diagnosis</dd>
+            <dd>A test of how long you can hold your breath</dd>
+            <dd>A habit tracker with badges</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 First light list -->
+  <section id="letter" class="letter" aria-labelledby="letter-title">
+    <div class="letter__intro">
+      <p class="eyebrow"><span class="eyebrow__no">06</span>First light list</p>
+      <h2 id="letter-title" data-rise>Be there when the first evening opens.</h2>
+      <p data-rise>ZENITH is preparing a small app with the same landscape, offline sessions and a gentle evening reminder you set yourself. Leave your name and we will write once when it is ready, and never more than once a month after that.</p>
+      <svg class="letter__horizon" viewBox="0 0 400 120" aria-hidden="true" focusable="false">
+        <path d="M40 100 A160 160 0 0 1 360 100" fill="none" stroke="currentColor" stroke-opacity=".35"/>
+        <path d="M0 100 H400" stroke="currentColor" stroke-opacity=".5"/>
+        <circle class="letter__sun" cx="200" cy="100" r="9"/>
+        <path d="M180 108 H220 M188 114 H212" stroke="#F6C6A8" stroke-linecap="round" stroke-opacity=".7"/>
+      </svg>
+    </div>
+
+    <form class="form" id="letter-form" novalidate aria-describedby="form-legal">
+      <p class="form__summary" id="form-summary" role="alert" hidden></p>
+      <div class="field">
+        <label for="f-name">First name</label>
+        <input id="f-name" name="name" type="text" autocomplete="given-name" aria-describedby="f-name-err" required>
+        <p class="field__err" id="f-name-err"></p>
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="f-email-err" required>
+        <p class="field__err" id="f-email-err"></p>
+      </div>
+      <fieldset class="field field--choice" id="f-time" aria-describedby="f-time-err">
+        <legend>When do you usually stop for a breath?</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="time" value="morning" id="t-morning"><span>Early morning</span></label>
+          <label class="choice"><input type="radio" name="time" value="midday"><span>Midday</span></label>
+          <label class="choice"><input type="radio" name="time" value="evening"><span>Evening</span></label>
+          <label class="choice"><input type="radio" name="time" value="night"><span>Before sleep</span></label>
+        </div>
+        <p class="field__err" id="f-time-err"></p>
+      </fieldset>
+      <div class="field">
+        <label for="f-note">Anything you would like the first version to include? <span class="field__opt">(optional)</span></label>
+        <textarea id="f-note" name="note" rows="3" aria-describedby="f-note-count f-note-err"></textarea>
+        <p class="field__count" id="f-note-count">0 / 240</p>
+        <p class="field__err" id="f-note-err"></p>
+      </div>
+      <div class="field field--check">
+        <label class="check"><input id="f-ok" name="ok" type="checkbox" aria-describedby="f-ok-err"><span>I would like one email when the ZENITH app opens.</span></label>
+        <p class="field__err" id="f-ok-err"></p>
+      </div>
+      <button class="btn-begin btn-begin--form" type="submit"><span class="btn-begin__icon" aria-hidden="true"></span><span class="btn-begin__label">Join the first light list</span></button>
+      <p class="form__legal" id="form-legal">Portfolio demo: this form does not send or store anything.</p>
+    </form>
+
+    <div class="form-done" id="form-done" tabindex="-1" hidden>
+      <p class="form-done__k">Thank you<span id="done-name"></span>.</p>
+      <p>This is a portfolio demo, so nothing was sent and no list exists. If ZENITH were real, you would hear from us once, at first light.</p>
+      <button class="btn-line" type="button" id="form-again">Start again</button>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="footer">
+  <div class="footer__sky" aria-hidden="true"></div>
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <svg class="footer__logo" viewBox="0 0 176 48" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+      <p class="footer__line">Your mind, in focus.</p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <ul>
+        <li><a href="#breathe">Breathe</a></li>
+        <li><a href="#sessions">Sessions</a></li>
+        <li><a href="#arc">The arc of a breath</a></li>
+        <li><a href="#rhythms">Rhythms</a></li>
+        <li><a href="#practice">Before you begin</a></li>
+        <li><a href="#sanctuary">The sanctuary</a></li>
+        <li><a href="#letter">First light list</a></li>
+      </ul>
+    </nav>
+    <div class="credit">
+      <p class="credit__by">Designed &amp; built by <a href="https://www.linkedin.com/in/saadbashirmarketing/" target="_blank" rel="noopener" aria-label="Saad Bashir on LinkedIn (opens in a new tab)">Saad Bashir</a></p>
+      <p class="credit__note">Fictional concept brand — portfolio project.</p>
+      <a class="credit__more" href="https://saadbashirportfolio.vercel.app/websites.html">More work <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <p class="footer__fine">ZENITH offers no medical advice. Breathe naturally whenever you wish.</p>
+</footer>
+</body>
+</html>

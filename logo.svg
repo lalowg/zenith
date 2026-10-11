@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 48" width="352" height="96" role="img" aria-labelledby="t">
+  <title id="t">ZENITH</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 30 A16 16 0 0 1 38 30" stroke="#2B2440" stroke-width="1.6"/>
+    <path d="M2 30 H42" stroke="#2B2440" stroke-width="1.6"/>
+    <path d="M22 28 V19" stroke="#2B2440" stroke-width="1" stroke-dasharray="1.2 2.6" opacity=".7"/>
+    <path d="M11 35 H33 M15.5 39.5 H28.5 M19.5 44 H24.5" stroke="#E3A07E" stroke-width="1.6"/>
+    <g stroke="#2B2440" stroke-width="1.6">
+      <path d="M56 16 H67 L56 32 H67"/>
+      <path d="M88 16 H79 V32 H88 M79 24 H86"/>
+      <path d="M100 32 V16 L112 32 V16"/>
+      <path d="M124 16 V32"/>
+      <path d="M136 16 H148 M142 16 V32"/>
+      <path d="M160 16 V32 M171 16 V32 M160 24 H171"/>
+    </g>
+  </g>
+  <circle cx="22" cy="14" r="3.4" fill="#E3A07E"/>
+</svg>
